@@ -15,4 +15,5 @@ After that run:
 `bmark file.lua`
 
 And import the bookmarks from you download folder into firefox:
-`Ctrl+Shift+O` > `Alt+I` > `I` > `gen<Down><Enter>` > `Ctrl+W`
+
+`<C-S-o><A-i>igen<Down><Cr><C-w>`
