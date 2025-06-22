@@ -1,6 +1,7 @@
 package main
 
 import (
+	"maps"
 	"os"
 
 	"github.com/cato-001/junkbox/out"
@@ -10,7 +11,7 @@ import (
 
 func main() {
 	var args struct {
-		LuaFile string `arg:"positional" help:"the lua file to generate the bookmarks from"`
+		LuaFile []string `arg:"positional" help:"the lua file to generate the bookmarks from"`
 	}
 
 	parser, err := arg.NewParser(arg.Config{}, &args)
@@ -20,10 +21,14 @@ func main() {
 	}
 	parser.MustParse(os.Args[1:])
 
-	bookmarks, err := LoadBookmarks(args.LuaFile)
-	if err != nil {
-		out.Ejsonln(err)
-		return
+	bookmarks := make(Bookmarks, 0)
+	for _, file := range args.LuaFile {
+		fileBookmarks, err := LoadBookmarks(file)
+		if err != nil {
+			out.Ejsonln(err)
+			return
+		}
+		maps.Copy(bookmarks, fileBookmarks)
 	}
 
 	output := "~/downloads"
