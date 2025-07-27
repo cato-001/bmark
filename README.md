@@ -10,7 +10,7 @@ return {
   gu = "github.com/search?type=users",
 
   -- sub tables are only used for organisation
-  -- they are flattend in the actual output, and do not change it
+  -- they are flattend in the actual output
   sub_table = {
     mail = "mail.google.com",
     maps = "maps.google.com",
